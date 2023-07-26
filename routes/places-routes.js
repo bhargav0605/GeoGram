@@ -14,9 +14,9 @@ router.post('/', [
                 check('description')
                     .not()
                     .isEmpty().isLength({min: 3}),
-                check('location')
-                    .not()
-                    .isEmpty(),
+                // check('location')
+                //     .not()
+                //     .isEmpty(),
                 check('address')
                     .not()
                     .isEmpty().isLength({min: 3}),
