@@ -28,7 +28,6 @@ const login = (req, res, next)=>{
 
 const signup = (req, res, next)=>{
     const { name, email, password }= req.body;
-    console.log(req.body);
     if(Object.keys(req.body).length === 0){
         throw new HttpError('No request body', 400);
     }
@@ -42,7 +41,7 @@ const signup = (req, res, next)=>{
         return u.email === email && u.password === password;
     });
     if(user){
-        throw new HttpError("User already created, please login", 404);
+        throw new HttpError("User already created, please login", 422);
     }
     DUMMY_USERS.push(createdUser);
     res.status(201).json({user: createdUser});

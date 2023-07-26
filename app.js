@@ -9,10 +9,8 @@ const app = express();
 
 // parsing body
 app.use(bodyParser.json());
-
 app.use('/api/places',placeRoutes);
 app.use('/api/users', userRoutes);
-
 app.use((req, res, next)=>{
     const error = new HttpError('Count not find this route.', 404);
     throw error;
