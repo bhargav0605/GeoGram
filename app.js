@@ -6,6 +6,9 @@ const userRoutes = require('./routes/users-routes');
 
 const app = express();
 
+// parsing body
+app.use(bodyParser.json());
+
 app.use('/api/places',placeRoutes);
 // app.use('/api/users', userRoutes);
 
