@@ -31,9 +31,6 @@ const getPlaceById =  (req, res, next)=>{
     res.json({place});
 };
 
-//function getPlaceById()..
-// const getPlaceById = function(){..}
-
 const getPlacesByUserId = (req, res, next)=>{
     const userId = req.params.uid;
     const places = DUMMY_PLACES.filter((u)=>{
