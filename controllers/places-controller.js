@@ -34,16 +34,16 @@ const getPlaceById =  (req, res, next)=>{
 //function getPlaceById()..
 // const getPlaceById = function(){..}
 
-const getPlaceByUserId = (req, res, next)=>{
+const getPlacesByUserId = (req, res, next)=>{
     const userId = req.params.uid;
-    const place = DUMMY_PLACES.find((u)=>{
+    const places = DUMMY_PLACES.filter((u)=>{
         return u.creator === userId;
     });
-    if(!place){
-        const error = new HttpError("Could not find user by provided id.", 404);
+    if(!places || places.length === 0){
+        const error = new HttpError("Could not find places by provided user id.", 404);
         return next(error)
     }
-    res.json({place});
+    res.json({places});
 };
 
 const createPlace = (req, res, next)=>{
@@ -61,6 +61,31 @@ const createPlace = (req, res, next)=>{
 
 };
 
+const updatePlace = (req, res, next) => {
+    const { title, description } = req.body;
+    const placeId = req.params.pid;
+
+    const updatePlace = { ...DUMMY_PLACES.find(p=>p.id === placeId) };
+    const placIndex = DUMMY_PLACES.findIndex(p=>p.id===placeId);
+    updatePlace.title = title;
+    updatePlace.description = description;
+
+    DUMMY_PLACES[placIndex] = updatePlace;
+
+    res.status(200).json({place: updatePlace});
+    
+};
+
+const deletePlace = (req, res, next)=>{
+    const placeId = req.params.pid;
+    const place = DUMMY_PLACES.find(p=>p.id === placeId);
+    DUMMY_PLACES.pop(place);
+
+    res.status(200).json({message : `${placeId} is deleted.`})
+}
+
 exports.getPlaceById = getPlaceById;
-exports.getPlaceByUserId = getPlaceByUserId;
+exports.getPlacesByUserId = getPlacesByUserId;
 exports.createPlace = createPlace;
+exports.updatePlace = updatePlace;
+exports.deletePlace = deletePlace;
