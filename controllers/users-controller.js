@@ -1,4 +1,5 @@
 const HttpError = require('../models/http-error');
+const { validationResult } = require('express-validator');
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -17,6 +18,13 @@ const getUsers = (req, res, next)=>{
 
 const login = (req, res, next)=>{
     const {email, password} = req.body;
+
+    const error = validationResult(req);
+    if(!error.isEmpty()){
+        console.log(error);
+        throw new HttpError('Invalid input, please check data.', 422);
+    }
+
     const user = DUMMY_USERS.find((u)=>{
         return u.email === email ;
     });
@@ -28,9 +36,17 @@ const login = (req, res, next)=>{
 
 const signup = (req, res, next)=>{
     const { name, email, password }= req.body;
+    
     if(Object.keys(req.body).length === 0){
         throw new HttpError('No request body', 400);
     }
+
+    const error = validationResult(req);
+    if(!error.isEmpty()){
+        console.log(error);
+        throw new HttpError('Invalid input, please check data.', 422);
+    }
+    
     const createdUser = {
         id: uuidv4(),
         name,
