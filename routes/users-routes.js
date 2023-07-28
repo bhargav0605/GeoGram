@@ -23,12 +23,10 @@ router.post('/signup',
             .not()
             .isEmpty(),
         check('email')
-            .not()
-            .isEmail().normalizeEmail()
-            .isEmpty(),
+            .isEmail().normalizeEmail(),
         check('password')
             .not()
-            .isEmpty().isLength({min: 3})
+            .isEmpty()
     ] ,
     userController.signup);
 
