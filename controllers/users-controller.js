@@ -49,7 +49,7 @@ const signup = async (req, res, next)=>{
         return next(new HttpError('Invalid input, please check data.', 422));
     }
 
-    const { name, email, password, places }= req.body;
+    const { name, email, password }= req.body;
 
     let existingUser
     try {
@@ -69,7 +69,7 @@ const signup = async (req, res, next)=>{
         email,
         password,
         image: 'https://static.vecteezy.com/system/resources/previews/002/002/403/original/man-with-beard-avatar-character-isolated-icon-free-vector.jpg',
-        places
+        places: []
     });
 
     try{
