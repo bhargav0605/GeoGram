@@ -4,6 +4,8 @@ const { validationResult } = require('express-validator');
 const HttpError = require('../models/http-error');
 const getCoordsForAddress = require('../util/location');
 const Place = require('../models/place');
+const User = require('../models/user');
+const mongoose = require('mongoose');
 
 const DUMMY_PLACES = [
     {
@@ -81,11 +83,32 @@ const createPlace = async (req, res, next)=>{
         creator
     });
 
-    try{
-        await createdPlace.save();
-    }catch(error){
+    let user;
+    try {
+        user = await User.findById(creator);
+    } catch (error) {
         const err = new HttpError('Creating place has failed, plese try again', 500)
-        return next(error);
+        return next(error); 
+    }
+
+    if(!user){
+        const err = new HttpError('Could not find user for provided id.', 404);
+        return next(error); 
+    }
+    console.log(user);
+//    "places": "64c359155e3900867adfaaf3"
+    try{
+        const sess = await mongoose.startSession();
+        sess.startTransaction();
+        await createdPlace.save({ session: sess });
+        user.places.push(createdPlace);
+        await user.save({ session: sess });
+        await sess.commitTransaction();
+
+    }catch(error){
+        console.log(error);
+        const err = new HttpError('Creating place has failed, plese try again', 500)
+        return next(err);
     }
     
     res.status(201).json({place: createdPlace});
