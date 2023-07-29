@@ -15,6 +15,6 @@ Backend REST API for MERN project.
 
 ## Features task list
 - [x] CRUD REST API.
-- [ ] File Upload.
+- [ ] File Upload. (Now working)
 - [ ] Authentication.
 - [ ] JWT Authorization.
