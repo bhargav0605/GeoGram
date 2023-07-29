@@ -7,21 +7,6 @@ const Place = require('../models/place');
 const User = require('../models/user');
 const mongoose = require('mongoose');
 
-const DUMMY_PLACES = [
-    {
-        id: 'p1',
-        title: 'Statue of Unity.',
-        description: 'Tallest statue of the world',
-        location: {
-            lat: 21.8380,
-            lng: 73.7191
-        },
-        address: 'Sardar Sarovar Dam, Statue of Unity Rd, Kevadia, Gujarat 393155',
-        creator: 'u1'
-
-    }
-];
-
 const getPlaceById =  async (req, res, next)=>{
     const placeId = req.params.pid;
     
@@ -54,7 +39,7 @@ const getPlacesByUserId = async (req, res, next)=>{
         const error = new HttpError('Could not find place with user id', 500);
         return next(error);
     }
-
+    // if(!places || places.length === 0)
     if(!userWithPlaces || userWithPlaces.places.length === 0){
         const error = new HttpError("Could not find places by provided user id.", 404);
         return next(error)
