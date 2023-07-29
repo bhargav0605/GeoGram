@@ -20,7 +20,7 @@ Backend REST API for MERN project.
 - [ ] JWT Authorization.
 
 ### Devops
-- [ ] Dockerfile
+- [x] Dockerfile
 - [ ] Docker Compose file
 - [ ] shell script
     - [ ] Build project
