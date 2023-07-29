@@ -14,7 +14,7 @@ Backend REST API for MERN project.
 * :page_facing_up: Dockerfile - Containerising backend.
 
 ## Features task list
-[x] CRUD REST API.
-[ ] File Upload.
-[ ] Authentication.
-[ ] JWT Authorization.
+- [x] CRUD REST API.
+- [ ] File Upload.
+- [ ] Authentication.
+- [ ] JWT Authorization.
