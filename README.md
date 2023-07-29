@@ -1,7 +1,7 @@
 `Under development.`
 
 # Geo-Gram
-Simple Backend REST API for MERN project.
+Backend REST API for MERN project.
 
 ## Project Structure
 * :open_file_folder: controllers
@@ -12,3 +12,9 @@ Simple Backend REST API for MERN project.
 * :page_facing_up: package.json - Contains all the dependencies.
 * :page_facing_up: README.md - Instruction and Documentation.
 * :page_facing_up: Dockerfile - Containerising backend.
+
+## Features task list
+[x] CRUD REST API.
+[ ] File Upload.
+[ ] Authentication.
+[ ] JWT Authorization.
