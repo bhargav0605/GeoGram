@@ -18,3 +18,12 @@ Backend REST API for MERN project.
 - [ ] File Upload. (Now working)
 - [ ] Authentication.
 - [ ] JWT Authorization.
+
+### Devops
+- [ ] Dockerfile
+- [ ] Docker Compose file
+- [ ] shell script
+    - [ ] Build project
+    - [ ] Generate docker image.
+    - [ ] Docker image retag.
+    - [ ] Push it on dockerhub.
